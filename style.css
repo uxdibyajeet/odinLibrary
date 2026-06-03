@@ -39,12 +39,12 @@
 }
 
 .cta {
-  background-color: #01584e;
+  background-color: #008a7a;
   padding: 0.6rem 1rem;
   border-radius: 0.4rem;
   border: none;
   color: #fff;
-  box-shadow: 1px 1px 8px #014139;
+  box-shadow: 1px 1px 8px #018676;
 }
 
 .headingOne {
@@ -52,11 +52,28 @@
   color: #4b4b4b;
 }
 
-table,
-th,
+th {
+  font-size: 1rem;
+  border: 1px solid black;
+  padding: 0.4rem 1rem;
+  margin: 0;
+  text-align: left;
+  color: #008a7a;
+  font-weight: 600;
+  font-size: 0.8rem;
+  background-color: #eaeaea;
+}
+
 td {
   font-size: 1rem;
   border: 1px solid black;
-  padding: 0.4rem;
-  margin: none;
+  padding: 0.4rem 1rem;
+  margin: 0;
+  text-align: left;
+}
+
+table {
+  border: 1px solid black;
+  padding: 0;
+  margin: 0;
 }
