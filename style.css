@@ -35,15 +35,25 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.6rem;
+  margin-bottom: 0.8rem;
+  margin-top: 1rem;
 }
 
-.cta {
+.primaryBtn {
   background-color: #008a7a;
   padding: 0.6rem 1rem;
   border-radius: 0.4rem;
   border: none;
   color: #fff;
+  box-shadow: 1px 1px 8px #018676;
+}
+
+.secondaryBtn {
+  background-color: #eeeeee;
+  padding: 0.6rem 1rem;
+  border-radius: 0.4rem;
+  border: none;
+  color: #080808;
   box-shadow: 1px 1px 8px #018676;
 }
 
@@ -76,4 +86,47 @@ table {
   border: 1px solid black;
   padding: 0;
   margin: 0;
+}
+
+/* Modal */
+.hidden {
+  display: none;
+}
+
+.modal-header {
+  padding: 1rem;
+  border-bottom: 2px solid #a2a2a2;
+}
+.modal-headline {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.modal {
+  width: 30vw;
+  background-color: #fff;
+  box-shadow: 1px 1px 8px #015e53;
+  border-radius: 0.4rem;
+  border: 2px solid #a2a2a2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+form {
+  padding: 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.modal-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem;
+}
+label {
+  margin-bottom: 0.4rem;
+}
+
+input {
+  margin-bottom: 1rem;
 }

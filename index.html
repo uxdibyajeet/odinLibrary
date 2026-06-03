@@ -14,13 +14,12 @@
     <div class="container">
       <div class="title">
         <h2 class="headingOne">Your Books</h2>
-        <button class="cta">Add New Book</button>
+        <button class="primaryBtn btn" id="addNew">Add New Book</button>
       </div>
       <table>
         <thead id="header">
           <tr>
             <th>Status</th>
-            <th>ID</th>
             <th>Book Name</th>
             <th>Author</th>
             <th>Pages</th>
@@ -29,6 +28,25 @@
         </thead>
         <tbody id="table-body"></tbody>
       </table>
+    </div>
+    <div class="modal hidden">
+      <div class="modal-header">
+        <p class="modal-headline">Add New Book</p>
+      </div>
+      <form action="">
+        <label for="bookName">Book Name</label>
+        <input type="text" name="bookName" placeholder="Harry Potter" />
+        <label for="authorName">Author Name</label>
+        <input type="text" name="authorName" placeholder="J.K. Rowling" />
+        <label for="pages">Number of Page</label>
+        <input type="number" name="pages" placeholder="270" />
+        <label for="status">Status</label>
+        <input type="checkbox" name="status" />
+      </form>
+      <div class="modal-footer">
+        <button class="secondaryBtn btn" id="closeModal">Cancel</button>
+        <button class="primaryBtn btn">Add</button>
+      </div>
     </div>
     <script src="script.js" defer></script>
   </body>
