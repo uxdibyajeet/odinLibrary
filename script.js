@@ -8,11 +8,17 @@ const Book = function (name, author, pages, status) {
   if (!new.target) {
     throw Error("forgot to add 'new' keyword");
   }
+  // this.status = status;
   this.status = status;
   this.id = crypto.randomUUID();
   this.name = name;
   this.author = author;
   this.pages = pages;
+};
+
+Book.prototype.toggleIsReadStatus = function () {
+  this.status = !this.status;
+  // console.log(this.status);
 };
 
 // take params create new book and adds to library
@@ -48,14 +54,14 @@ function generateTable() {
         checkBox.type = "checkbox";
         checkBox.checked = book[val];
         checkBox.classList.add("checkBox");
-        if (checkBox.value === true) {
+        if (checkBox.checked === true) {
           helper.textContent = "read";
         } else {
           helper.textContent = "unread";
         }
         // Check / uncheck event listener
-        checkBox.addEventListener("click", (e) => {
-          book.status = e.target.checked;
+        checkBox.addEventListener("click", () => {
+          book.toggleIsReadStatus();
           if (book.status !== true) {
             helper.textContent = "unread";
           } else {
@@ -86,7 +92,7 @@ function generateTable() {
   });
 }
 
-console.log(myLibrary);
+// console.log(myLibrary);
 
 // Delete book via ID
 function deleteBook(itemId) {
@@ -111,18 +117,6 @@ function init() {
         }
       } else if (button.textContent === "Cancel") {
         modal.classList.add("hidden");
-      } else if (button.type === "checkbox") {
-        if (button.checked) {
-          helper.textContent = "read";
-          button.value = "read";
-          console.log(button.value);
-          return button.value;
-        } else {
-          helper.textContent = "unread";
-          button.value = "unread";
-          console.log(button.value);
-          return button.value;
-        }
       } else {
         //code runs after sumbiting form
         e.preventDefault();
@@ -130,9 +124,9 @@ function init() {
           name: document.querySelector("#bookName").value,
           author: document.querySelector("#authorName").value,
           pages: document.querySelector("#pages").value,
-          status: button.value,
+          status: document.querySelector("#status").checked,
         };
-        console.log(myLibrary);
+        // console.log(myLibrary);
         addBookToLibrary(data.name, data.author, data.pages, data.status);
         generateTable();
         modal.classList.add("hidden");
