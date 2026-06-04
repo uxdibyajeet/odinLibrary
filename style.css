@@ -74,6 +74,19 @@ th {
   background-color: #eaeaea;
 }
 
+.checkBox {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0;
+  margin-right: 0.4rem;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 td {
   font-size: 1rem;
   border: 1px solid black;
@@ -125,8 +138,28 @@ form {
 }
 label {
   margin-bottom: 0.4rem;
+  font-size: 0.8rem;
 }
 
 input {
   margin-bottom: 1rem;
+}
+
+#pages,
+#authorName,
+#bookName {
+  padding: 0.4rem;
+}
+
+@media (min-width: 992px) {
+  .container {
+    margin-left: 18rem;
+    margin-right: 18rem;
+    margin-top: 2rem;
+    padding: 0;
+  }
+  #banner {
+    padding-left: 18rem;
+    padding-right: 18rem;
+  }
 }

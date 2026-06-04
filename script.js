@@ -25,7 +25,7 @@ const sample = {
   name: "(Sample)1984",
   author: "George Orwell",
   pages: 370,
-  status: "on",
+  status: false,
 };
 addBookToLibrary(sample.name, sample.author, sample.pages, sample.status);
 
@@ -38,18 +38,33 @@ function generateTable() {
     row.classList.add("row");
     //data fields are generated from here
     Object.keys(book).forEach((val) => {
+      const wrapper = document.createElement("div");
+      wrapper.classList.add("wrapper");
       const cell = document.createElement("td");
       if (val === "id") return;
       else if (val === "status") {
+        const helper = document.createElement("p");
         const checkBox = document.createElement("input");
         checkBox.type = "checkbox";
         checkBox.checked = book[val];
+        checkBox.classList.add("checkBox");
+        if (checkBox.value === true) {
+          helper.textContent = "read";
+        } else {
+          helper.textContent = "unread";
+        }
         // Check / uncheck event listener
         checkBox.addEventListener("click", (e) => {
           book.status = e.target.checked;
-          console.log(book.status);
+          if (book.status !== true) {
+            helper.textContent = "unread";
+          } else {
+            helper.textContent = "read";
+          }
         });
-        cell.appendChild(checkBox);
+        cell.appendChild(wrapper);
+        wrapper.appendChild(checkBox);
+        wrapper.appendChild(helper);
       } else {
         cell.textContent = book[val];
       }
@@ -85,6 +100,7 @@ function init() {
   const form = document.querySelector("form");
   const modal = document.querySelector(".modal");
   const buttons = document.querySelectorAll(".btn");
+  const helper = document.querySelector(".helper");
   buttons.forEach((button) => {
     button.addEventListener("click", (e) => {
       if (button.textContent === "Add New Book") {
@@ -95,13 +111,26 @@ function init() {
         }
       } else if (button.textContent === "Cancel") {
         modal.classList.add("hidden");
+      } else if (button.type === "checkbox") {
+        if (button.checked) {
+          helper.textContent = "read";
+          button.value = "read";
+          console.log(button.value);
+          return button.value;
+        } else {
+          helper.textContent = "unread";
+          button.value = "unread";
+          console.log(button.value);
+          return button.value;
+        }
       } else {
+        //code runs after sumbiting form
         e.preventDefault();
         const data = {
           name: document.querySelector("#bookName").value,
           author: document.querySelector("#authorName").value,
           pages: document.querySelector("#pages").value,
-          status: document.querySelector("#status").value,
+          status: button.value,
         };
         console.log(myLibrary);
         addBookToLibrary(data.name, data.author, data.pages, data.status);
