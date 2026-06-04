@@ -17,26 +17,6 @@ const Book = function (name, author, pages, status) {
 
 // take params create new book and adds to library
 function addBookToLibrary(name, author, pages, status) {
-  const addNew = document.querySelector("#addNew");
-  const modal = document.querySelector(".modal");
-  const buttons = document.querySelectorAll(".btn");
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      if (button.textContent === "Add New Book") {
-        if (!modal.classList.contains("hidden")) {
-          modal.classList.add("hidden");
-        } else {
-          modal.classList.remove("hidden");
-        }
-      } else if (button.textContent === "Cancel") {
-        modal.classList.add("hidden");
-      } else {
-        addBookToLibrary();
-        console.log(myLibrary);
-      }
-    });
-  });
-
   const newBook = new Book(name, author, pages, status);
   myLibrary.push(newBook);
 }
@@ -45,7 +25,7 @@ const sample = {
   name: "(Sample)1984",
   author: "George Orwell",
   pages: 370,
-  status: true,
+  status: "on",
 };
 addBookToLibrary(sample.name, sample.author, sample.pages, sample.status);
 
@@ -101,6 +81,38 @@ function deleteBook(itemId) {
 }
 
 // add new Book
-function addBook() {}
+function init() {
+  const form = document.querySelector("form");
+  const modal = document.querySelector(".modal");
+  const buttons = document.querySelectorAll(".btn");
+  buttons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      if (button.textContent === "Add New Book") {
+        if (!modal.classList.contains("hidden")) {
+          modal.classList.add("hidden");
+        } else {
+          modal.classList.remove("hidden");
+        }
+      } else if (button.textContent === "Cancel") {
+        modal.classList.add("hidden");
+      } else {
+        e.preventDefault();
+        const data = {
+          name: document.querySelector("#bookName").value,
+          author: document.querySelector("#authorName").value,
+          pages: document.querySelector("#pages").value,
+          status: document.querySelector("#status").value,
+        };
+        console.log(myLibrary);
+        addBookToLibrary(data.name, data.author, data.pages, data.status);
+        generateTable();
+        modal.classList.add("hidden");
+        form.reset();
+      }
+    });
+  });
+}
+
+init();
 
 generateTable();
